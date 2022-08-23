@@ -8,10 +8,10 @@ import {
 } from "react-native";
 
 type Props = {
-  uri_image: string
+  uri_image: string;
   name: string;
   specie: string;
-  gender: string
+  gender: string;
 }
 
 export function Card({ uri_image, name, specie, gender }: Props) {
@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
   },
   textName: {
     color: "#F4F4F6",
-    fontSize: 22,
-    fontWeight: "bold"
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: 'center'
   },
   text: {
     color: "#F2D64B",
