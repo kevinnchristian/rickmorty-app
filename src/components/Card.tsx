@@ -10,11 +10,10 @@ import {
 type Props = {
   uri_image: string;
   name: string;
-  specie: string;
   gender: string;
 }
 
-export function Card({ uri_image, name, specie, gender }: Props) {
+export function Card({ uri_image, name, gender }: Props) {
   return (
     <View style={styles.card}>
       <Image
@@ -23,13 +22,17 @@ export function Card({ uri_image, name, specie, gender }: Props) {
       />
 
       <View style={styles.textBox}>
-        <Text style={styles.textName}> {name} </Text>
-        <Text style={styles.text}> {specie} </Text>
+        <Text
+          style={styles.textName}
+          numberOfLines={1}
+        >
+          {name}
+        </Text>
         <Text style={styles.text}> {gender} </Text>
 
         <Pressable style={styles.moreButton}>
           <Text style={styles.moreText}>
-            Ver mais
+            Details
           </Text>
         </Pressable>
       </View>

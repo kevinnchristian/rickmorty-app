@@ -2,8 +2,7 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  StatusBar,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { useState, useEffect } from "react";
 
@@ -22,9 +21,7 @@ export function RMCharacter() {
   }, []);
 
   return (
-    <ScrollView
-      style={{ paddingTop: StatusBar.currentHeight }}
-    >
+    <ScrollView>
       <View style={styles.container}>
         {
           character?.map((item, index) => (
@@ -32,8 +29,7 @@ export function RMCharacter() {
               key={index.toString()}
               uri_image={item.image}
               name={item.name}
-              specie={item.species}
-              gender={item.gender}
+              gender={item.gender == 'unknown' ? 'Unknown' : item.gender}
             />
           ))
         }
