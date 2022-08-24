@@ -1,15 +1,16 @@
 import {
   View,
+  Text,
   Dimensions,
   StyleSheet,
   ScrollView,
-} from "react-native";
-import { useState, useEffect } from "react";
+} from 'react-native';
+import { useState, useEffect } from 'react';
 
-import { Card } from "../components/Card";
+import { Card } from '../components/Card';
 
-import Api from "../services/Api";
-import { ICharacter } from "../types";
+import Api from '../services/Api';
+import { ICharacter } from '../types';
 
 export function RMCharacter() {
   const [character, setCharacter] = useState<ICharacter[]>();
@@ -23,25 +24,39 @@ export function RMCharacter() {
   return (
     <ScrollView>
       <View style={styles.container}>
+        <Text style={styles.title}>Rick Morty Effect</Text>
         {
           character?.map((item, index) => (
             <Card
-              key={index.toString()}
-              uri_image={item.image}
+              key={index}
+              id={item.id}
+              image={item.image}
               name={item.name}
               gender={item.gender == 'unknown' ? 'Unknown' : item.gender}
+              species={item.species == 'unknown' ? 'Unknown' : item.species}
+              status={item.status == 'unknown' ? 'Unknown' : item.status}
             />
           ))
         }
       </View>
-    </ScrollView>
+    </ ScrollView >
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get("window").width,
-    justifyContent: "center",
-    alignItems: "center"
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Dimensions.get('window').width,
   },
+  title: {
+    color: '#05F2AF',
+    fontSize: 42,
+    fontFamily: 'get_schwifty',
+    textShadowColor: '#F2D64B',
+    textShadowOffset: { width: -2, height: 1.8 },
+    textShadowRadius: 6,
+    padding: 20,
+  }
 });

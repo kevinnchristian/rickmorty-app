@@ -5,48 +5,73 @@ import {
   Pressable,
   Dimensions,
   StyleSheet
-} from "react-native";
+} from 'react-native';
+import { useState } from 'react';
+
+import { CardModal } from './CardModal';
 
 type Props = {
-  uri_image: string;
-  name: string;
-  gender: string;
+  id: number,
+  image: string,
+  name: string,
+  gender: string,
+  species: string,
+  status: string,
 }
 
-export function Card({ uri_image, name, gender }: Props) {
+export function Card({
+  id,
+  image,
+  name,
+  gender,
+  species,
+  status
+}: Props) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <View style={styles.card}>
+    <View style={styles.cardBody}>
       <Image
         style={styles.cardImage}
-        source={{ uri: uri_image }}
+        source={{ uri: image }}
       />
 
-      <View style={styles.textBox}>
+      <View style={styles.cardTextBox}>
         <Text
-          style={styles.textName}
+          style={styles.cardTextName}
           numberOfLines={1}
-        >
-          {name}
-        </Text>
-        <Text style={styles.text}> {gender} </Text>
+        >{name}</Text>
+        <Text style={styles.cardText}> {gender} </Text>
 
-        <Pressable style={styles.moreButton}>
-          <Text style={styles.moreText}>
-            Details
-          </Text>
+        <Pressable
+          style={styles.cardDetailsButton}
+          onPress={() => setShowModal(!showModal)}
+        >
+          <Text style={styles.cardTextDetailsButton}>Details</Text>
         </Pressable>
       </View>
-    </View>
+
+      <CardModal
+        id={id}
+        image={image}
+        name={name}
+        gender={gender}
+        species={species}
+        status={status}
+        showModalCard={showModal}
+        callbackShowModalCard={value => setShowModal(value)}
+      />
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: Dimensions.get("window").width - 150,
-    backgroundColor: "#B65CF2",
+  cardBody: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Dimensions.get('window').width - 150,
+    backgroundColor: '#B65CF2',
     borderRadius: 10,
     margin: 12,
     paddingHorizontal: 15,
@@ -58,34 +83,34 @@ const styles = StyleSheet.create({
     width: 220,
     borderRadius: 4
   },
-  textBox: {
+  cardTextBox: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 15
   },
-  textName: {
-    color: "#F4F4F6",
+  cardTextName: {
+    color: '#F4F4F6',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     textAlign: 'center'
   },
-  text: {
-    color: "#F2D64B",
+  cardText: {
+    color: '#F2D64B',
     fontSize: 15,
     fontWeight: '500',
   },
-  moreButton: {
-    backgroundColor: "#05F2AF",
+  cardDetailsButton: {
+    backgroundColor: '#05F2AF',
     borderRadius: 4,
     marginTop: 15,
     marginBottom: 5,
     paddingHorizontal: 20,
     paddingVertical: 6
   },
-  moreText: {
-    color: "#0C1440",
+  cardTextDetailsButton: {
+    color: '#0C1440',
     fontSize: 13,
-    fontWeight: "bold"
-  }
+    fontWeight: 'bold'
+  },
 });
