@@ -19,7 +19,7 @@ Projeto feito após a conclusão das aulas ao vivo na semana 1.
 - `Typescript`
 - `Axios`
 
-## Libs:
+## Dependências:
 - `typescript`
 - `@types/react`
 - `@types/react-native`
